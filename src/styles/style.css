@@ -1,0 +1,49 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+* {
+    --var-sb-cols: 5;
+    --var-sb-rows: 5;
+}
+
+.audio-container {
+    display: none;
+}
+
+div#button-settings {
+    width: 80vw;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(var(--var-sb-cols), 1fr);
+    grid-template-rows:  repeat(var(--var-sb-rows), 1fr);
+    width: calc(var(--var-sb-cols) * 100px);
+    height: calc(var(--var-sb-rows) * 100px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.play-button {
+    background-color: rgb(70, 70, 70);
+    border: none;
+    border-radius: 3px;
+    margin: 2px;
+}
+
+.play-button:hover {
+    opacity: 0.9;
+}
+
+.play-button:active, .play-button-pressed {
+    opacity: 0.8;
+}
+
+.file-input {
+    opacity: 0;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    margin: 0;
+    padding: 0;
+    display: none;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="soundboard-section">
+        <div class="grid"></div>
+    </div>
+
+    <div class="audio-container" hidden>
+    </div>
+
+    <div id="button-settings">
+        <h1>Edit button</h1>
+        <form id="button-settings-form" action="none">
+            <fieldset>
+                <legend>General</legend>
+                <div class="form-group row">
+                    <label for="audio-name" class="col-sm-1 col-form-label">Audio name</label>
+                    <div class="col-sm-auto">
+                        <input id="audio-name" class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="audio-file" class="col-sm-1 col-form-label">Audio file</label>
+                    <div class="col-sm-auto">
+                        <button id="audio-from-file-button" type="button" class="btn btn-primary">Load from file</button>
+                        <input id="audio-file" class="file-input" type="file">
+                    </div>
+                    <div class="col-sm">
+                        <audio src="http://users.jyu.fi/~dezhidki/test.mp3" controls></audio>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Appearance</legend>
+
+                <div class="form-group row">
+                    <label for="color-idle" class="col-sm-1 col-form-label">Color (idle)</label>
+                    <div class="col-sm-auto">
+                        <input id="color-idle" type="color">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="color-play" class="col-sm-1 col-form-label">Color (playing)</label>
+                    <div class="col-sm-auto">
+                        <input id="color-play" type="color">
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Play options</legend>
+
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-secondary">
+                        <input type="checkbox" checked autocomplete="off"> Loop
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="checkbox" autocomplete="off"> Toggle play
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="checkbox" autocomplete="off"> Pausable
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="checkbox" autocomplete="off"> Stop others when played
+                    </label>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>
