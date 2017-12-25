@@ -1,14 +1,18 @@
 const DEFAULT_BUTTON_SETTINGS = {
     loop: false,
-    toggle: true,
-    pausable: false,
     stopAll: false,
-    buttonColor: "#880000",
-    playingColor: null
+    buttonColor: "#444444",
+    playingColor: "#444444",
+    title: "",
+    type: "toggle",
+    key: "",
+    audioSrc: "",
+    col: 0,
+    row: 0
 };
 
 function createDefaultButtonSettings() {
-    return Object.assign({}, DEFAULT_BUTTON_SETTINGS);
+    return {...DEFAULT_BUTTON_SETTINGS};
 }
 
-export {createDefaultButtonSettings};
+export { createDefaultButtonSettings, DEFAULT_BUTTON_SETTINGS };

@@ -10,7 +10,21 @@
 }
 
 div#button-settings {
-    width: 80vw;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 40vw;
+    height: 100vh;
+    transform: translateX(40vw);
+    background-color: white;
+    z-index: 20;
+    transition-duration: 250ms;
+    transition-property: "transform";
+    transition-timing-function: ease;
+}
+
+div#button-settings.active {
+    transform: translateX(0);
 }
 
 .grid {
@@ -38,6 +52,13 @@ div#button-settings {
     opacity: 0.8;
 }
 
+.play-button span {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
 .file-input {
     opacity: 0;
     position: absolute;
@@ -46,4 +67,28 @@ div#button-settings {
     margin: 0;
     padding: 0;
     display: none;
+}
+
+input.form-control[type='color'] {
+    padding: 0;
+    width: 100px;
+}
+
+div#bg-overlay {
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    opacity: 0;
+    transition-duration: 250ms;
+    transition-property: "opacity";
+    transition-timing-function: ease;
+}
+
+div#bg-overlay.active {
+    z-index: 10;
+    opacity: 0.8;
 }

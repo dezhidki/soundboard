@@ -16,62 +16,71 @@
     <div class="audio-container" hidden>
     </div>
 
-    <div id="button-settings">
+    <div id="bg-overlay"></div>
+    <div id="button-settings" class="pl-sm-5">
         <h1>Edit button</h1>
         <form id="button-settings-form" action="none">
             <fieldset>
                 <legend>General</legend>
                 <div class="form-group row">
-                    <label for="audio-name" class="col-sm-1 col-form-label">Audio name</label>
+                    <label for="audio-name" class="col-sm-2 col-form-label">Audio name</label>
                     <div class="col-sm-auto">
                         <input id="audio-name" class="form-control" type="text">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="audio-file" class="col-sm-1 col-form-label">Audio file</label>
+                    <label for="activation-button" class="col-sm-2 col-form-label">Activation key</label>
+                    <div class="col-sm-auto">
+                        <input id="activation-button" class="form-control" type="text" size="1" maxlength="1">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="audio-file" class="col-sm-2 col-form-label">Audio file</label>
                     <div class="col-sm-auto">
                         <button id="audio-from-file-button" type="button" class="btn btn-primary">Load from file</button>
-                        <input id="audio-file" class="file-input" type="file">
+                        <input id="audio-file" class="file-input" type="file" accept="audio/*">
+                    </div>
+                    <div class="col-sm-auto">
+                        <button id="audio-remove-button" class="btn btn-danger">Remove</button>
                     </div>
                     <div class="col-sm">
-                        <audio src="http://users.jyu.fi/~dezhidki/test.mp3" controls></audio>
+                        <audio id="audio-preview" controls></audio>
                     </div>
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Appearance</legend>
-
-                <div class="form-group row">
-                    <label for="color-idle" class="col-sm-1 col-form-label">Color (idle)</label>
-                    <div class="col-sm-auto">
-                        <input id="color-idle" type="color">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="color-play" class="col-sm-1 col-form-label">Color (playing)</label>
-                    <div class="col-sm-auto">
-                        <input id="color-play" type="color">
-                    </div>
+                <div class="form-inline mb-sm-4">
+                    <label for="color-idle" class="mr-sm-2">Color (idle)</label>
+                    <input id="color-idle" type="color" class="form-control">
+                    <label for="color-play" class="mx-sm-2">Color (playing)</label>
+                    <input id="color-play" type="color" class="form-control">
                 </div>
             </fieldset>
-            <fieldset>
-                <legend>Play options</legend>
-
+            <fieldseat>
+                <div id="play-type-radio-group" class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="play-type" value="toggle" autocomplete="off" checked> Toggle
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="play-type" value="once" autocomplete="off"> Once
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="play-type" value="shot" autocomplete="off"> Shot
+                    </label>
+                </div>
                 <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-secondary">
-                        <input type="checkbox" checked autocomplete="off"> Loop
+                    <label class="btn btn-secondary" id="loop-toggle">
+                        <input type="checkbox" autocomplete="off"> Loop
                     </label>
-                    <label class="btn btn-secondary">
-                        <input type="checkbox" autocomplete="off"> Toggle play
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="checkbox" autocomplete="off"> Pausable
-                    </label>
-                    <label class="btn btn-secondary">
+                    <label class="btn btn-secondary"id="stop-others-toggle">
                         <input type="checkbox" autocomplete="off"> Stop others when played
                     </label>
                 </div>
-            </fieldset>
+                </fieldset>
+                <div class="my-sm-5">
+                    <button class="btn btn-outline-primary">Save</button>
+                </div>
         </form>
     </div>
 </body>

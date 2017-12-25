@@ -24,6 +24,14 @@ module.exports = {
                     fallback: "style-loader",
                     use: "css-loader"
                 })
+            },
+            {
+                test: /\.js$/,
+                loader: "babel-loader",
+                query: {
+                    presets: ["es2015"],
+                    plugins: [require("babel-plugin-transform-object-rest-spread")]
+                }
             }
         ]
     },
