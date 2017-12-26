@@ -5,6 +5,7 @@ import * as settingsGui from "./button-settings";
 
 var $grid, $audioContainer;
 var buttonGrid;
+var gridCols, gridRows;
 var playSet;
 var keyToButtonMap;
 var $bgOverlay;
@@ -25,7 +26,7 @@ function init() {
     });
 
     $grid.on("click", ".play-button", e => {
-        let button = buttonGrid[e.target.dataset.col][e.target.dataset.row];
+        let button = buttonGrid[+e.target.dataset.col + +e.target.dataset.row * gridCols];
 
         if (e.ctrlKey) {
             settingsGui.editButton(button.settings);
@@ -65,7 +66,7 @@ function setButtonData(data) {
     if (data.col === undefined || data.row === undefined)
         return;
 
-    let button = buttonGrid[data.col][data.row];
+    let button = buttonGrid[data.col + data.row * gridCols];
     if (!button)
         return;
 
@@ -86,7 +87,12 @@ function setButtonData(data) {
     button.textElement.text(button.settings.title);
 }
 
-function onPlay(button) {
+function onPlay(audio) {
+    let col = +audio.dataset.col;
+    let row = +audio.dataset.row;
+    let button = buttonGrid[col + row * gridCols];
+    if(!button)
+        return;
     let settings = button.settings;
 
     if (settings.stopAll) {
@@ -100,7 +106,12 @@ function onPlay(button) {
     playSet.add(button.audio);
 }
 
-function onStop(button) {
+function onStop(audio) {
+    let col = +audio.dataset.col;
+    let row = +audio.dataset.row;
+    let button = buttonGrid[col + row * gridCols];
+    if(!button)
+        return;
     button.element.removeClass("play-button-pressed");
 
     button.element.css("background-color", button.settings.buttonColor);
@@ -108,12 +119,13 @@ function onStop(button) {
 }
 
 function initButtonGrid(cols, rows) {
+    gridCols = cols;
+    gridRows = rows;
     $grid.empty();
     $audioContainer.empty();
 
-    buttonGrid = new Array(cols);
+    buttonGrid = new Array(cols * rows);
     for (let i = 0; i < cols; i++) {
-        buttonGrid[i] = new Array(rows);
         for (let j = 0; j < rows; j++) {
             let el = $("<div/>", { "class": "play-button" })
                 .attr("data-col", i)
@@ -124,14 +136,14 @@ function initButtonGrid(cols, rows) {
             let audioEl = $("<audio/>")
                 .attr("data-col", i)
                 .attr("data-row", j)
-                .on("play", e => onPlay(buttonGrid[e.target.dataset.col][e.target.dataset.row]))
-                .on("ended pause", e => onStop(buttonGrid[e.target.dataset.col][e.target.dataset.row]));
+                .on("play", e => onPlay(e.target))
+                .on("ended pause", e => onStop(e.target));
 
             let buttonSettings = settings.createDefaultButtonSettings();
             buttonSettings.col = i;
             buttonSettings.row = j;
 
-            buttonGrid[i][j] = {
+            buttonGrid[i + j * cols] = {
                 element: el,
                 textElement: textEl,
                 audio: audioEl[0],
@@ -145,4 +157,23 @@ function initButtonGrid(cols, rows) {
     }
 }
 
-export { init, setButtonData };
+function deserialize(data) {
+    if(!data)
+        return;
+    
+    data.layout.forEach(bs => setButtonData(bs));
+}
+
+function serialize() {
+    let data = {
+        layout: []
+    };
+
+    buttonGrid.forEach(b => {
+        data.layout.push(b.settings);
+    });
+
+    return data;
+}
+
+export { init, setButtonData, serialize, deserialize };

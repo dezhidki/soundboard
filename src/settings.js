@@ -1,8 +1,8 @@
 const DEFAULT_BUTTON_SETTINGS = {
     loop: false,
     stopAll: false,
-    buttonColor: "#444444",
-    playingColor: "#444444",
+    buttonColor: "#757575",
+    playingColor: "#757575",
     title: "",
     type: "toggle",
     key: "",

@@ -5,6 +5,10 @@
     --var-sb-rows: 5;
 }
 
+body {
+    background-color: #212121;
+}
+
 .audio-container {
     display: none;
 }
@@ -13,9 +17,9 @@ div#button-settings {
     position: fixed;
     top: 0;
     right: 0;
-    width: 40vw;
+    width: 800px;
     height: 100vh;
-    transform: translateX(40vw);
+    transform: translateX(800px);
     background-color: white;
     z-index: 20;
     transition-duration: 250ms;
@@ -25,23 +29,25 @@ div#button-settings {
 
 div#button-settings.active {
     transform: translateX(0);
+    box-shadow: -2px 0px 10px 0px rgba(0,0,0,0.75);
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(var(--var-sb-cols), 1fr);
     grid-template-rows:  repeat(var(--var-sb-rows), 1fr);
-    width: calc(var(--var-sb-cols) * 100px);
-    height: calc(var(--var-sb-rows) * 100px);
+    width: 100vh;
+    height: 100vh;
     margin-left: auto;
     margin-right: auto;
 }
 
 .play-button {
-    background-color: rgb(70, 70, 70);
+    background-color: #757575;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     margin: 2px;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
 }
 
 .play-button:hover {
@@ -91,4 +97,11 @@ div#bg-overlay {
 div#bg-overlay.active {
     z-index: 10;
     opacity: 0.8;
+}
+
+@media screen and (max-width: 800px) {
+    div#button-settings {
+        width: 100vw;
+        transform: translateX(100vw);
+    }
 }
