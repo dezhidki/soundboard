@@ -1,6 +1,5 @@
 import $ from "jquery";
 import * as settings from "./settings";
-import * as utils from "./utils";
 import * as settingsGui from "./button-settings";
 
 var $grid, $audioContainer;
@@ -26,7 +25,10 @@ function init() {
     });
 
     $grid.on("click", ".play-button", e => {
-        let button = buttonGrid[+e.target.dataset.col + +e.target.dataset.row * gridCols];
+        let target = e.target;
+        if(e.target.tagName === "SPAN" || e.target.tagName === "KBD")
+            target = e.target.parentElement;
+        let button = buttonGrid[+target.dataset.col + +target.dataset.row * gridCols];
 
         if (e.ctrlKey) {
             settingsGui.editButton(button.settings);
@@ -85,6 +87,7 @@ function setButtonData(data) {
         keyToButtonMap[button.settings.key] = button.element;
 
     button.textElement.text(button.settings.title);
+    button.keyboardElement.text(button.settings.key);
 }
 
 function onPlay(audio) {
@@ -132,6 +135,7 @@ function initButtonGrid(cols, rows) {
                 .attr("data-row", j);
 
             let textEl = $("<span/>").appendTo(el);
+            let kbdEl = $("<kbd/>").appendTo(el);
 
             let audioEl = $("<audio/>")
                 .attr("data-col", i)
@@ -146,6 +150,7 @@ function initButtonGrid(cols, rows) {
             buttonGrid[i + j * cols] = {
                 element: el,
                 textElement: textEl,
+                keyboardElement: kbdEl,
                 audio: audioEl[0],
                 settings: buttonSettings
             };

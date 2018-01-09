@@ -48,6 +48,8 @@ div#button-settings.active {
     border-radius: 5px;
     margin: 2px;
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    text-align: center;
+    overflow: hidden;
 }
 
 .play-button:hover {
@@ -58,11 +60,27 @@ div#button-settings.active {
     opacity: 0.8;
 }
 
-.play-button span {
+.play-button span, kbd {
     -webkit-user-select: none; /* Safari */        
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+}
+
+.play-button span {
+    font-size: 4em;
+    line-height: 1em;
+    display: block;
+    margin-top: calc(50% - 0.7em);
+}
+
+.play-button kbd {
+    margin-top: 1em;
+    display: inline-block;
+}
+
+.play-button kbd:empty {
+    padding: 0;
 }
 
 .file-input {
@@ -97,6 +115,18 @@ div#bg-overlay {
 div#bg-overlay.active {
     z-index: 10;
     opacity: 0.8;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+ 
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.767);
 }
 
 @media screen and (max-width: 800px) {
